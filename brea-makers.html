@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brea Makers — Agencia de Luxury Marketing</title>
+  <meta name="description" content="Brea Makers, agencia de luxury marketing especializada en marcas de bienestar, hospitality y estilo de vida sofisticado.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: 0 0% 0%;
+      --sage: 90 8% 55%;
+      --cream: 44 30% 95%;
+      --cream-deep: 40 22% 90%;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      background-color: hsl(var(--cream));
+      color: hsl(var(--ink));
+      overflow-x: hidden;
+    }
+    img, video { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; }
+
+    .eyebrow {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: hsl(var(--sage));
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes marqueeLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-fade-up { animation: fadeUp 0.9s ease both; }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.35s; }
+    .delay-3 { animation-delay: 0.5s; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background-color: hsl(var(--cream) / 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background-color: hsl(var(--cream) / 0.97);
+      box-shadow: 0 1px 0 hsl(var(--ink) / 0.07);
+    }
+    .nav-inner {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 16px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+    .nav-left { display: flex; align-items: center; }
+    .nav-logo { grid-column: 2; justify-self: center; }
+    .nav-logo img { height: 26px; width: auto; }
+    .nav-right { justify-self: end; display: flex; align-items: center; gap: 20px; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 1px;
+      background-color: hsl(var(--ink));
+    }
+
+    .nav-lang {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: hsl(var(--ink) / 0.65);
+      background: none;
+      border: none;
+      transition: color 0.2s;
+    }
+    .nav-lang:hover { color: hsl(var(--ink)); }
+
+    .nav-cta {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: hsl(var(--cream));
+      background-color: hsl(var(--ink));
+      padding: 9px 18px;
+      transition: background-color 0.2s;
+    }
+    .nav-cta:hover { background-color: hsl(var(--ink) / 0.82); }
+
+    .mobile-menu {
+      display: none;
+      padding: 10px 24px 16px;
+      border-top: 1px solid hsl(var(--ink) / 0.1);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: hsl(var(--ink) / 0.7);
+      padding: 12px 0;
+      border-bottom: 1px solid hsl(var(--ink) / 0.07);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: hsl(var(--ink)); }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 72px;
+      padding-bottom: 40px;
+      background-color: hsl(var(--cream));
+    }
+    .hero-video-wrap {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 78vh;
+      background-color: #000;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.08);
+    }
+    .hero-text-wrap {
+      max-width: 1400px;
+      margin: 56px auto 0;
+      padding: 0 48px;
+    }
+    .hero-text-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      color: hsl(var(--ink));
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-top: 18px;
+    }
+    .hero-eyebrow-fiap {
+      margin-top: 40px;
+    }
+    .hero-desc {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: hsl(var(--ink) / 0.7);
+      line-height: 1.85;
+      margin-top: 14px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── FIAP Slider ── */
+    .fiap-wrap {
+      margin-top: 56px;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 70vh;
+      background-color: hsl(var(--cream));
+      touch-action: pan-y;
+    }
+    .fiap-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fiap-slide {
+      flex: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .fiap-slide img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* ── Sections ── */
+    .section-white {
+      padding: 80px 0;
+      background-color: #fff;
+      scroll-margin-top: 72px;
+    }
+    .section-cream-deep {
+      padding: 80px 0;
+      background-color: hsl(var(--cream-deep));
+      scroll-margin-top: 72px;
+    }
+    .section-head {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section-head-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-title-upper {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      color: hsl(var(--ink));
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      color: hsl(var(--ink));
+      line-height: 1.25;
+      margin-top: 16px;
+    }
+    .section-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: hsl(var(--ink) / 0.65);
+      line-height: 1.75;
+      margin-top: 20px;
+    }
+
+    /* ── Projects Carousel ── */
+    .projects-outer {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 48px;
+      position: relative;
+    }
+    .projects-overflow {
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+    .projects-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .project-card {
+      flex: none;
+      width: calc((100% - 72px) / 4);
+      cursor: pointer;
+    }
+    .project-img-wrap { overflow: hidden; margin-bottom: 20px; }
+    .project-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      transition: transform 1200ms ease;
+    }
+    .project-card:hover .project-img { transform: scale(1.05); }
+    .project-cat {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: hsl(var(--sage));
+      margin-bottom: 8px;
+    }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: hsl(var(--ink));
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: hsl(var(--ink) / 0.65);
+      line-height: 1.65;
+    }
+
+    /* ── Slider Buttons ── */
+    .sl-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background-color: hsl(var(--cream) / 0.85);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: hsl(var(--ink));
+      backdrop-filter: blur(4px);
+      transition: background-color 0.2s;
+      z-index: 10;
+    }
+    .sl-btn:hover { background-color: hsl(var(--cream)); }
+    .sl-btn:disabled { opacity: 0.25; pointer-events: none; }
+    .sl-btn.prev { left: 16px; }
+    .sl-btn.next { right: 16px; }
+    .sl-btn.proj-prev { left: -16px; top: 28%; }
+    .sl-btn.proj-next { right: -16px; top: 28%; }
+
+    .sl-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .sl-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background-color: hsl(var(--ink) / 0.3);
+      border: none;
+      transition: background-color 0.2s;
+      padding: 0;
+    }
+    .sl-dot.active { background-color: hsl(var(--ink)); }
+
+    /* ── Clients / Marquee ── */
+    .clients-section {
+      background-color: hsl(var(--cream-deep));
+      border-top: 1px solid hsl(var(--ink) / 0.1);
+      border-bottom: 1px solid hsl(var(--ink) / 0.1);
+      scroll-margin-top: 72px;
+      padding: 48px 0;
+    }
+    .clients-head {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 48px 32px;
+      text-align: center;
+    }
+    .marquee-outer {
+      position: relative;
+      overflow: hidden;
+      padding: 16px 0;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: marqueeLeft 30s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track img {
+      height: 110px;
+      width: auto;
+      flex: none;
+      object-fit: contain;
+    }
+    .marquee-fade {
+      pointer-events: none;
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 96px;
+    }
+    .marquee-fade.left  { left: 0;  background: linear-gradient(to right, hsl(var(--cream-deep)), transparent); }
+    .marquee-fade.right { right: 0; background: linear-gradient(to left,  hsl(var(--cream-deep)), transparent); }
+
+    /* ── Founder ── */
+    .founder-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+    .founder-photo-col { grid-column: span 4; }
+    .founder-photo-frame {
+      overflow: hidden;
+      background-color: hsl(var(--cream-deep));
+      max-width: 280px;
+      margin-left: auto;
+    }
+    .founder-photo-frame img { width: 100%; height: auto; display: block; }
+    .founder-text-col { grid-column: 6 / span 7; }
+    .founder-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      color: hsl(var(--ink));
+      line-height: 1.25;
+      margin-bottom: 32px;
+    }
+    .founder-bio { display: flex; flex-direction: column; gap: 20px; }
+    .founder-bio p {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: hsl(var(--ink) / 0.75);
+      line-height: 1.8;
+    }
+
+    /* ── Contact ── */
+    .contact-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .contact-head {
+      text-align: center;
+      max-width: 768px;
+      margin: 0 auto 40px;
+    }
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      color: hsl(var(--ink));
+      line-height: 1.25;
+      margin-top: 24px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background-color: hsl(var(--ink) / 0.1);
+      max-width: 768px;
+      margin: 0 auto;
+      border: 1px solid hsl(var(--ink) / 0.1);
+    }
+    .contact-card {
+      background-color: hsl(var(--cream));
+      padding: 40px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+    .contact-card:hover { background-color: hsl(var(--cream-deep)); }
+    .contact-icon { width: 20px; height: 20px; color: hsl(var(--sage)); margin-bottom: 20px; }
+    .contact-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: hsl(var(--ink) / 0.6);
+      margin-bottom: 12px;
+    }
+    .contact-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: hsl(var(--ink));
+      position: relative;
+    }
+    .contact-value::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 0; height: 1px;
+      background-color: hsl(var(--ink));
+      transition: width 0.3s;
+    }
+    .contact-card:hover .contact-value::after { width: 100%; }
+
+    /* ── Footer ── */
+    .footer-wrap { background-color: hsl(var(--cream-deep)); }
+    .footer-inner {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      border-top: 1px solid hsl(var(--ink) / 0.1);
+    }
+    .footer-copy {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: hsl(var(--ink) / 0.6);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 767px) {
+      .nav-inner { padding: 14px 20px; }
+      .hamburger { display: flex; }
+      .nav-cta { display: none; }
+
+      .hero { padding-top: 58px; padding-bottom: 24px; }
+      .hero-video-wrap { height: auto; aspect-ratio: 16/9; }
+      .hero-text-wrap { padding: 0 20px; margin-top: 28px; }
+      .hero-desc { font-size: 14px; }
+      .fiap-wrap { height: auto; aspect-ratio: 16/9; margin-top: 28px; }
+
+      /* FIAP slider arrows inside on mobile */
+      .fiap-wrap .sl-btn.prev { left: 8px; }
+      .fiap-wrap .sl-btn.next { right: 8px; }
+
+      .section-white, .section-cream-deep { padding: 48px 0; }
+      .section-head { padding: 0 20px; }
+      .section-head-inner { margin-bottom: 28px; }
+
+      /* Projects carousel: clip overflow, show peek of next card */
+      .projects-outer {
+        padding: 0;
+        overflow: hidden;
+      }
+      .projects-track { padding: 0 20px; }
+      .project-card { width: 76vw; flex-shrink: 0; }
+
+      /* Hide desktop arrows on mobile — swipe only */
+      .sl-btn.proj-prev,
+      .sl-btn.proj-next { display: none; }
+
+      .clients-section { padding: 36px 0; }
+      .clients-head { padding: 0 20px 24px; }
+      .marquee-track img { height: 72px; }
+      .marquee-fade { width: 40px; }
+
+      .founder-inner {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        gap: 28px;
+      }
+      .founder-photo-col { grid-column: span 1; }
+      .founder-photo-frame { margin: 0 auto; max-width: 220px; }
+      .founder-text-col { grid-column: span 1; }
+
+      .contact-inner { padding: 0 20px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 32px 20px; }
+
+      .footer-inner { padding: 20px; }
+    }
+
+    @media (min-width: 768px) {
+      .hamburger { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <a href="#top" class="nav-logo">
+      <img src="assets/logo.png" alt="Brea Makers" loading="eager">
+    </a>
+
+    <div class="nav-right">
+      <button class="nav-lang" id="langToggle">EN</button>
+      <a href="#contacto" class="nav-cta" data-i18n="nav.contact">Contacto</a>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#contacto" data-i18n="nav.contact" onclick="closeMobileMenu()">Contacto</a>
+  </div>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section id="top" class="hero">
+  <div class="hero-video-wrap">
+    <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="auto"
+           poster="assets/fiap-1.jpg">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-text-wrap">
+    <div class="hero-text-inner">
+      <span class="eyebrow animate-fade-up">BS.AS · CDMX</span>
+      <h1 class="hero-title animate-fade-up delay-1">FIAP</h1>
+      <p class="hero-desc animate-fade-up delay-2" data-i18n="hero.desc">Somos la agencia que produce el Festival Iberoamericano de la Creatividad (FIAP), un Festival que año tras año celebra una creatividad con propósito, reuniendo a las marcas y profesionales más destacadas de la industria audiovisual en la región.</p>
+    </div>
+  </div>
+
+  <!-- FIAP Slideshow -->
+  <div class="fiap-wrap" id="fiapWrap">
+    <div class="fiap-track" id="fiapTrack">
+      <div class="fiap-slide"><img src="assets/fiap-1.jpg" alt="FIAP 1" loading="eager"></div>
+      <div class="fiap-slide"><img src="assets/fiap-2.jpg" alt="FIAP 2" loading="lazy"></div>
+      <div class="fiap-slide"><img src="assets/fiap-3.jpg" alt="FIAP 3" loading="lazy"></div>
+      <div class="fiap-slide"><img src="assets/fiap-4.jpg" alt="FIAP 4" loading="lazy"></div>
+    </div>
+    <button class="sl-btn prev" id="fiapPrev" aria-label="Anterior">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="sl-btn next" id="fiapNext" aria-label="Siguiente">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="sl-dots" id="fiapDots">
+      <button class="sl-dot active"></button>
+      <button class="sl-dot"></button>
+      <button class="sl-dot"></button>
+      <button class="sl-dot"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PROJECTS ══════ -->
+<section id="proyectos" class="section-white">
+  <div class="section-head">
+    <div class="section-head-inner">
+      <span class="eyebrow" style="margin-bottom:16px">CLIENTS HIGHLIGHTS</span>
+      <h2 class="section-title-upper" data-i18n="proj.heading">Historias que creamos junto a grandes marcas</h2>
+      <p class="section-subtitle" data-i18n="proj.sub">Agencia creativa especializada en transformar ideas en experiencias, campañas y contenidos que conectan marcas con personas de manera auténtica.</p>
+    </div>
+  </div>
+
+  <div class="projects-outer">
+    <div class="projects-overflow" id="projOverflow">
+      <div class="projects-track" id="projTrack">
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/project-lanacion.jpg" alt="La Nación AMEX Foodies" loading="lazy">
+          </div>
+          <p class="project-cat" data-i18n="lanacion.cat">Eventos · Hospitality</p>
+          <h3 class="project-name">La Nación — AMEX Foodies</h3>
+          <p class="project-desc" data-i18n="lanacion.desc">Producción y cobertura de eventos en Punta del Este, con experiencias culinarias de autor.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/project-topper.jpg" alt="Topper" loading="lazy">
+          </div>
+          <p class="project-cat" data-i18n="topper.cat">Campañas · Lifestyle</p>
+          <h3 class="project-name">Topper</h3>
+          <p class="project-desc" data-i18n="topper.desc">Campañas, producción audiovisual, fotografía y curaduría de influencers.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/project-gnc.jpg" alt="GNC" loading="lazy">
+          </div>
+          <p class="project-cat">Wellness</p>
+          <h3 class="project-name">GNC</h3>
+          <p class="project-desc" data-i18n="gnc.desc">Campañas, influencers, creadores de contenido y producción de fotografía y video.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/project-lavigilia.jpg" alt="La Vigilia" loading="lazy">
+          </div>
+          <p class="project-cat" data-i18n="vigilia.cat">Vinos · Mendoza</p>
+          <h3 class="project-name">La Vigilia</h3>
+          <p class="project-desc" data-i18n="vigilia.desc">Campaña y producción de foto y video en el Valle de Uco, Mendoza.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/project-troquer.jpg" alt="Troquer" loading="lazy">
+          </div>
+          <p class="project-cat" data-i18n="troquer.cat">Fashion · México</p>
+          <h3 class="project-name">Troquer</h3>
+          <p class="project-desc" data-i18n="troquer.desc">Campañas, influencers, creadores de contenido y producción de fotografía y video.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/project-sprite.jpg" alt="Sprite" loading="lazy">
+          </div>
+          <p class="project-cat" data-i18n="sprite.cat">Eventos · Activaciones</p>
+          <h3 class="project-name">Sprite</h3>
+          <p class="project-desc" data-i18n="sprite.desc">Producción de eventos a escala, deportivos e institucionales, diseño gráfico, influencers y campañas.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img class="project-img" src="assets/project-velez.jpg" alt="Vélez" loading="lazy">
+          </div>
+          <p class="project-cat">Sports · Social</p>
+          <h3 class="project-name">Vélez</h3>
+          <p class="project-desc" data-i18n="velez.desc">Social media, diseño gráfico, estrategia y producción de contenido.</p>
+        </div>
+
+      </div>
+    </div>
+    <button class="sl-btn proj-prev" id="projPrev" aria-label="Anterior">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="sl-btn proj-next" id="projNext" aria-label="Siguiente">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ══════ CLIENTS ══════ -->
+<section id="clientes" class="clients-section">
+  <div class="clients-head">
+    <span class="eyebrow" style="margin-bottom:16px" data-i18n="clients.eyebrow">Clientes</span>
+    <h2 class="section-title" data-i18n="clients.title">Marcas que confían en Brea Makers</h2>
+  </div>
+  <div class="marquee-outer">
+    <div class="marquee-track">
+      <img src="assets/clients-strip.png" alt="Clientes" loading="eager">
+      <img src="assets/clients-strip.png" alt="Clientes" loading="eager" aria-hidden="true">
+      <img src="assets/clients-strip.png" alt="" loading="eager" aria-hidden="true">
+      <img src="assets/clients-strip.png" alt="" loading="eager" aria-hidden="true">
+    </div>
+    <div class="marquee-fade left"></div>
+    <div class="marquee-fade right"></div>
+  </div>
+</section>
+
+<!-- ══════ FOUNDER ══════ -->
+<section id="founder" class="section-white">
+  <div class="founder-inner">
+    <div class="founder-photo-col">
+      <div class="founder-photo-frame">
+        <img src="assets/founder.jpg" alt="Gonzalo Andino" loading="lazy">
+      </div>
+    </div>
+    <div class="founder-text-col">
+      <span class="eyebrow" style="margin-bottom:24px" data-i18n="founder.eyebrow">Founder</span>
+      <h2 class="founder-name">Gonzalo Andino</h2>
+      <div class="founder-bio">
+        <p data-i18n="founder.p1">Soy productor y director de Brea Makers, con una trayectoria construida junto a marcas masivas, desarrollando campañas, contenidos y experiencias para audiencias diversas.</p>
+        <p data-i18n="founder.p2">Además, soy productor del Festival Iberoamericano de la Creatividad (FIAP), un festival que año tras año celebra una creatividad con propósito.</p>
+        <p data-i18n="founder.p3">Con el tiempo, mi foco profesional evolucionó hacia el Luxury Marketing, impulsado por una creciente curiosidad por entender cómo el lujo contemporáneo se redefine a partir de las experiencias, el wellness y la búsqueda de bienestar auténtico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CONTACT ══════ -->
+<section id="contacto" class="section-cream-deep">
+  <div class="contact-inner">
+    <div class="contact-head">
+      <span class="eyebrow" data-i18n="contact.eyebrow">Contacto</span>
+      <h2 class="contact-title" data-i18n="contact.title">Conversemos sobre tu próximo proyecto</h2>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:gonzalo@brea-adv.com" class="contact-card">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M2 7l10 7 10-7"/>
+        </svg>
+        <p class="contact-label">Email</p>
+        <span class="contact-value">gonzalo@brea-adv.com</span>
+      </a>
+      <a href="https://www.instagram.com/breamakers/" target="_blank" rel="noopener" class="contact-card">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        <p class="contact-label">Instagram</p>
+        <span class="contact-value">@breamakers</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<div class="footer-wrap">
+  <footer class="footer-inner">
+    <p class="footer-copy">© 2026 Brea Makers — Creative Network Production</p>
+  </footer>
+</div>
+
+<script>
+/* ════════════════════════════════
+   TRANSLATIONS
+════════════════════════════════ */
+const T = {
+  es: {
+    'nav.contact':    'Contacto',
+    'hero.title':     'Luxury Marketing y Producción Creativa',
+    'hero.desc':      'Somos la agencia que produce el Festival Iberoamericano de la Creatividad (FIAP), un Festival que año tras año celebra una creatividad con propósito, reuniendo a las marcas y profesionales más destacadas de la industria audiovisual en la región.',
+    'proj.heading':   'Historias que creamos junto a grandes marcas',
+    'proj.sub':       'Agencia creativa especializada en transformar ideas en experiencias, campañas y contenidos que conectan marcas con personas de manera auténtica.',
+    'lanacion.cat':   'Eventos · Hospitality',
+    'lanacion.desc':  'Producción y cobertura de eventos en Punta del Este, con experiencias culinarias de autor.',
+    'topper.cat':     'Campañas · Lifestyle',
+    'topper.desc':    'Campañas, producción audiovisual, fotografía y curaduría de influencers.',
+    'gnc.desc':       'Campañas, influencers, creadores de contenido y producción de fotografía y video.',
+    'vigilia.cat':    'Vinos · Mendoza',
+    'vigilia.desc':   'Campaña y producción de foto y video en el Valle de Uco, Mendoza.',
+    'troquer.cat':    'Fashion · México',
+    'troquer.desc':   'Campañas, influencers, creadores de contenido y producción de fotografía y video.',
+    'sprite.cat':     'Eventos · Activaciones',
+    'sprite.desc':    'Producción de eventos a escala, deportivos e institucionales, diseño gráfico, influencers y campañas.',
+    'velez.desc':     'Social media, diseño gráfico, estrategia y producción de contenido.',
+    'clients.eyebrow':'Clientes',
+    'clients.title':  'Marcas que confían en Brea Makers',
+    'founder.eyebrow':'Founder',
+    'founder.p1':     'Soy productor y director de Brea Makers, con una trayectoria construida junto a marcas masivas, desarrollando campañas, contenidos y experiencias para audiencias diversas.',
+    'founder.p2':     'Además, soy productor del Festival Iberoamericano de la Creatividad (FIAP), un festival que año tras año celebra una creatividad con propósito.',
+    'founder.p3':     'Con el tiempo, mi foco profesional evolucionó hacia el Luxury Marketing, impulsado por una creciente curiosidad por entender cómo el lujo contemporáneo se redefine a partir de las experiencias, el wellness y la búsqueda de bienestar auténtico.',
+    'contact.eyebrow':'Contacto',
+    'contact.title':  'Conversemos sobre tu próximo proyecto',
+  },
+  en: {
+    'nav.contact':    'Contact',
+    'hero.title':     'Luxury Marketing and Creative Production',
+    'hero.desc':      'We are the agency that produces the Ibero-American Festival of Creativity (FIAP), a festival that year after year celebrates creativity with purpose, bringing together the most prominent brands and professionals in the regional audiovisual industry.',
+    'proj.heading':   'Stories we create with great brands',
+    'proj.sub':       'Creative agency specialized in turning ideas into experiences, campaigns and content that connect brands with people authentically.',
+    'lanacion.cat':   'Events · Hospitality',
+    'lanacion.desc':  'Production and coverage of events in Punta del Este, featuring signature culinary experiences.',
+    'topper.cat':     'Campaigns · Lifestyle',
+    'topper.desc':    'Campaigns, audiovisual production, photography and influencer curation.',
+    'gnc.desc':       'Campaigns, influencers, content creators, and photo and video production.',
+    'vigilia.cat':    'Wines · Mendoza',
+    'vigilia.desc':   'Campaign and photo and video production in Valle de Uco, Mendoza.',
+    'troquer.cat':    'Fashion · Mexico',
+    'troquer.desc':   'Campaigns, influencers, content creators, and photo and video production.',
+    'sprite.cat':     'Events · Activations',
+    'sprite.desc':    'Large-scale event production — sports and institutional — graphic design, influencers and campaigns.',
+    'velez.desc':     'Social media, graphic design, strategy and content production.',
+    'clients.eyebrow':'Clients',
+    'clients.title':  'Brands that trust Brea Makers',
+    'founder.eyebrow':'Founder',
+    'founder.p1':     "I'm a producer and director at Brea Makers, with a career built alongside mass-market brands, developing campaigns, content and experiences for diverse audiences.",
+    'founder.p2':     "I'm also producer of the Ibero-American Festival of Creativity (FIAP), a festival that year after year celebrates creativity with purpose.",
+    'founder.p3':     'Over time, my professional focus evolved toward Luxury Marketing, driven by a growing curiosity to understand how contemporary luxury is redefined through experiences, wellness and the search for authentic wellbeing.',
+    'contact.eyebrow':'Contact',
+    'contact.title':  "Let's talk about your next project",
+  }
+};
+
+let currentLang = 'es';
+
+function applyLang(lang) {
+  const dict = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.documentElement.lang = lang;
+}
+
+/* ════════════════════════════════
+   NAV
+════════════════════════════════ */
+const mainNav  = document.getElementById('mainNav');
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const langBtn  = document.getElementById('langToggle');
+let menuOpen = false;
+
+window.addEventListener('scroll', () => {
+  mainNav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobileMenu.classList.toggle('open', menuOpen);
+});
+
+function closeMobileMenu() { menuOpen = false; mobileMenu.classList.remove('open'); }
+
+langBtn.addEventListener('click', () => {
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  langBtn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+  applyLang(currentLang);
+});
+
+/* ════════════════════════════════
+   VIDEO SOUND via IntersectionObserver
+════════════════════════════════ */
+const heroVideo = document.getElementById('heroVideo');
+
+const videoObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      heroVideo.muted = false;
+      heroVideo.play().catch(() => { heroVideo.muted = true; });
+    } else {
+      heroVideo.muted = true;
+    }
+  });
+}, { threshold: 0.25 });
+
+videoObserver.observe(heroVideo);
+
+/* ════════════════════════════════
+   FIAP SLIDER
+════════════════════════════════ */
+let fiapIdx = 0;
+const fiapTrack = document.getElementById('fiapTrack');
+const fiapDots  = document.querySelectorAll('#fiapDots .sl-dot');
+const fiapPrev  = document.getElementById('fiapPrev');
+const fiapNext  = document.getElementById('fiapNext');
+const FIAP_TOTAL = 4;
+
+function fiapUpdate() {
+  fiapTrack.style.transform = `translateX(-${fiapIdx * 100}%)`;
+  fiapDots.forEach((d, i) => d.classList.toggle('active', i === fiapIdx));
+  fiapPrev.disabled = fiapIdx === 0;
+  fiapNext.disabled = fiapIdx === FIAP_TOTAL - 1;
+}
+
+fiapPrev.addEventListener('click', () => { if (fiapIdx > 0) { fiapIdx--; fiapUpdate(); } });
+fiapNext.addEventListener('click', () => { if (fiapIdx < FIAP_TOTAL - 1) { fiapIdx++; fiapUpdate(); } });
+fiapDots.forEach((d, i) => d.addEventListener('click', () => { fiapIdx = i; fiapUpdate(); }));
+addSwipe(document.getElementById('fiapWrap'), dir => {
+  fiapIdx = Math.max(0, Math.min(FIAP_TOTAL - 1, fiapIdx + dir));
+  fiapUpdate();
+});
+
+fiapUpdate();
+
+let fiapTimer = setInterval(() => {
+  fiapIdx = (fiapIdx + 1) % FIAP_TOTAL;
+  fiapUpdate();
+}, 4500);
+
+[fiapPrev, fiapNext].concat(Array.from(fiapDots)).forEach(el => {
+  el.addEventListener('click', () => { clearInterval(fiapTimer); });
+});
+
+/* ════════════════════════════════
+   PROJECTS CAROUSEL
+════════════════════════════════ */
+let projIdx = 0;
+const projTrack = document.getElementById('projTrack');
+const projCards = projTrack.querySelectorAll('.project-card');
+const projPrev  = document.getElementById('projPrev');
+const projNext  = document.getElementById('projNext');
+const PROJ_TOTAL = projCards.length;
+
+function visibleCount() { return window.innerWidth < 768 ? 1 : 4; }
+
+function projUpdate() {
+  const gap    = 24;
+  const cardW  = projCards[0].offsetWidth + gap;
+  projTrack.style.transform = `translateX(-${projIdx * cardW}px)`;
+  projPrev.disabled = projIdx === 0;
+  projNext.disabled = projIdx >= PROJ_TOTAL - visibleCount();
+}
+
+projPrev.addEventListener('click', () => { if (projIdx > 0) { projIdx--; projUpdate(); } });
+projNext.addEventListener('click', () => {
+  if (projIdx < PROJ_TOTAL - visibleCount()) { projIdx++; projUpdate(); }
+});
+addSwipe(document.getElementById('projOverflow'), dir => {
+  projIdx = Math.max(0, Math.min(PROJ_TOTAL - visibleCount(), projIdx + dir));
+  projUpdate();
+});
+
+window.addEventListener('resize', projUpdate);
+projUpdate();
+
+/* ════════════════════════════════
+   SWIPE HELPER
+════════════════════════════════ */
+function addSwipe(el, cb) {
+  let sx = 0;
+  el.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  el.addEventListener('touchend',   e => {
+    const dx = sx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) cb(dx > 0 ? 1 : -1);
+  }, { passive: true });
+}
+</script>
+</body>
+</html>
